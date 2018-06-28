@@ -7,10 +7,12 @@
 //
 
 import UIKit
+import Firebase
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
+    var YOUR_ADMOB_APP_ID: String = "ca-app-pub-3940256099942544~1458002511."
     let dataController = DataController(modelName: "PubChemSolution")
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
@@ -18,6 +20,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         dataController.load()
         checkIfFirstLaunch()
         configureTabBarController()
+        
+        
+        // Use Firebase library to configure APIs.
+        FirebaseApp.configure()
+        
+        // Initialize the Google Mobile Ads SDK.
+        GADMobileAds.configure(withApplicationID: YOUR_ADMOB_APP_ID)
 
         return true
     }
